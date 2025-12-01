@@ -30,7 +30,7 @@ enum PermissionEnum: string
         // PIANIFICAZIONE
     case ACCESS_CALENDAR = 'access-calendar';
 
-        // OPERAZIONI
+        // INTERVENTI
     case LIST_OPERATIONS = 'list-operations';
     case VIEW_OPERATIONS = 'view-operations';
     case CREATE_OPERATIONS = 'create-operations';
@@ -92,4 +92,11 @@ enum PermissionEnum: string
     case CREATE_PRODUCTS = 'create-products';
     case EDIT_PRODUCTS = 'edit-products';
     case DELETE_PRODUCTS = 'delete-products';
+
+        // PAGAMENTI
+    case LIST_PAYMENTS = 'list-payments';
+    case VIEW_PAYMENTS = 'view-payments';
+    case CREATE_PAYMENTS = 'create-payments';
+    case EDIT_PAYMENTS = 'edit-payments';
+    case DELETE_PAYMENTS = 'delete-payments';
 }
