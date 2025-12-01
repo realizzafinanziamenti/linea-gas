@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 
 class SuperAdminSeeder extends Seeder
 {
@@ -22,6 +22,6 @@ class SuperAdminSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ]
-        )->assignRole(Role::SUPER_ADMIN->value);
+        )->assignRole(RoleEnum::SUPER_ADMIN->value);
     }
 }
