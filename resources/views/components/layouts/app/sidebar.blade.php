@@ -5,15 +5,15 @@
     @include('partials.head')
 </head>
 
-<body class="min-h-screen overflow-hidden bg-white">
+<body class="min-h-screen overflow-hidden bg-gray-bg">
     <div class="flex w-full h-screen">
         {{-- SIDEBAR --}}
-        <div class="w-[250px] h-screen flex flex-col shrink-0">
+        <div class="w-[250px] h-screen flex flex-col shrink-0 bg-white shadow-[4px_0px_10px_#00000005]">
             @include('partials.layout.sidebar.superadmin')
         </div>
 
         {{-- MAIN WRAPPER --}}
-        <div class="flex-1 flex flex-col overflow-hidden h-screen bg-red-500">
+        <div class="flex-1 flex flex-col overflow-hidden h-screen">
 
             {{-- HEADER --}}
             @include('partials.layout.header')
