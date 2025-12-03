@@ -4,12 +4,12 @@
     <div class="flex items-center gap-x-4">
         {{-- Notifications Button --}}
         <button class="cursor-pointer">
-            <flux:icon icon="bell-alert" class="size-5.5" />
+            <flux:icon.notification-bell class="size-5.5" />
         </button>
 
-        {{-- Notifications Button --}}
+        {{-- Settings Button --}}
         <button class="cursor-pointer">
-            <flux:icon icon="bell-alert" class="size-5.5" />
+            <flux:icon.settings class="size-5.5" />
         </button>
     </div>
 
