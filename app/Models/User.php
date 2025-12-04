@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\RoleEnum;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -61,5 +64,20 @@ class User extends Authenticatable
             ->take(2)
             ->map(fn($word) => Str::substr($word, 0, 1))
             ->implode('');
+    }
+
+    /* Get the user's role name attribute */
+    protected function roleName(): Attribute
+    {
+        return Attribute::get(function () {
+            $role = $this->getRoleNames()->first();
+
+            if (!$role) {
+                return null;
+            }
+
+            $roleEnum = RoleEnum::tryFrom($role);
+            return $roleEnum?->label() ?? $role;
+        });
     }
 }

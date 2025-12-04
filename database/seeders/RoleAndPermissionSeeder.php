@@ -47,7 +47,7 @@ class RoleAndPermissionSeeder extends Seeder
                     PermissionEnum::ACCESS_DASHBOARD->value,
 
                     // CLIENTI
-                    PermissionEnum::LIST_CUSTOMERS->value,
+                    PermissionEnum::ACCESS_CUSTOMERS->value,
                     PermissionEnum::VIEW_CUSTOMERS->value,
                     PermissionEnum::CREATE_CUSTOMERS->value,
                     PermissionEnum::EDIT_CUSTOMERS->value,
@@ -57,14 +57,14 @@ class RoleAndPermissionSeeder extends Seeder
                     PermissionEnum::ACCESS_CALENDAR->value,
 
                     // INTERVENTI
-                    PermissionEnum::LIST_OPERATIONS->value,
+                    PermissionEnum::ACCESS_OPERATIONS->value,
                     PermissionEnum::VIEW_OPERATIONS->value,
                     PermissionEnum::CREATE_OPERATIONS->value,
                     PermissionEnum::EDIT_OPERATIONS->value,
                     PermissionEnum::DELETE_OPERATIONS->value,
 
                     // RICHIESTE
-                    PermissionEnum::LIST_QUOTES->value,
+                    PermissionEnum::ACCESS_QUOTES->value,
                     PermissionEnum::VIEW_QUOTES->value,
                     PermissionEnum::CREATE_QUOTES->value,
                     PermissionEnum::EDIT_QUOTES->value,
@@ -79,7 +79,7 @@ class RoleAndPermissionSeeder extends Seeder
                     PermissionEnum::ACCESS_CALENDAR->value,
 
                     // INTERVENTI
-                    PermissionEnum::LIST_OPERATIONS->value,
+                    PermissionEnum::ACCESS_OPERATIONS->value,
                     PermissionEnum::VIEW_OPERATIONS->value,
                 ]);
                 break;
@@ -88,24 +88,24 @@ class RoleAndPermissionSeeder extends Seeder
                     PermissionEnum::ACCESS_DASHBOARD->value,
 
                     // INTERVENTI
-                    PermissionEnum::LIST_OPERATIONS->value,
+                    PermissionEnum::ACCESS_OPERATIONS->value,
                     PermissionEnum::VIEW_OPERATIONS->value,
                     PermissionEnum::CREATE_OPERATIONS->value,
 
                     // PREVENTIVI
-                    PermissionEnum::LIST_QUOTES->value,
+                    PermissionEnum::ACCESS_QUOTES->value,
                     PermissionEnum::VIEW_QUOTES->value,
 
                     // DOCUMENTI
-                    PermissionEnum::LIST_DOCUMENTS->value,
+                    PermissionEnum::ACCESS_DOCUMENTS->value,
                     PermissionEnum::VIEW_DOCUMENTS->value,
 
                     // CONTRATTI
-                    PermissionEnum::LIST_CONTRACTS->value,
+                    PermissionEnum::ACCESS_CONTRACTS->value,
                     PermissionEnum::VIEW_CONTRACTS->value,
 
                     // PAGAMENTI
-                    PermissionEnum::LIST_PAYMENTS->value,
+                    PermissionEnum::ACCESS_PAYMENTS->value,
                     PermissionEnum::VIEW_PAYMENTS->value,
                     PermissionEnum::CREATE_PAYMENTS->value,
                 ]);
