@@ -90,11 +90,8 @@ class User extends Authenticatable
      */
     public function initials(): string
     {
-        return Str::of($this->name)
-            ->explode(' ')
-            ->take(2)
-            ->map(fn($word) => Str::substr($word, 0, 1))
-            ->implode('');
+        return Str::substr($this->first_name, 0, 1)
+            . Str::substr($this->last_name, 0, 1);
     }
 
     /* Get the user's role name attribute */
