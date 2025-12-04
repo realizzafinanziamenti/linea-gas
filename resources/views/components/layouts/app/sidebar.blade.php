@@ -9,7 +9,14 @@
     <div class="flex w-full h-screen">
         {{-- SIDEBAR --}}
         <div class="w-[250px] h-screen flex flex-col shrink-0 bg-white shadow-[4px_0px_10px_#00000005]">
-            @include('partials.layout.sidebar.superadmin')
+            <sidebar class="flex-1 flex flex-col overflow-y-auto">
+                {{-- Logo --}}
+                <div class="flex items-center justify-center h-[70px] shrink-0">
+                    <img src="{{ asset('images/logo.png') }}" alt="{{ __('Logo') }}" class="h-[48px] w-auto">
+                </div>
+
+                @include('partials.layout.sidebar')
+            </sidebar>
         </div>
 
         {{-- MAIN WRAPPER --}}
