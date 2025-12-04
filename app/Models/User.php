@@ -6,7 +6,9 @@ namespace App\Models;
 
 use App\Enums\RoleEnum;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -16,7 +18,7 @@ use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasRoles;
+    use HasFactory, Notifiable, TwoFactorAuthenticatable, HasRoles, SoftDeletes, HasUlids;
 
     /**
      * The attributes that are mass assignable.
@@ -24,9 +26,18 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'phone',
+        'birth_date',
+        'hire_date',
+        'tax_code',
+        'address',
+        'city',
+        'province',
+        'zip_code',
     ];
 
     /**
@@ -51,7 +62,27 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'birth_date' => 'date',
+            'hire_date' => 'date',
         ];
+    }
+
+    /**
+     * Get the unique identifiers for the model.
+     *
+     * @return array
+     */
+    public function uniqueIds(): array
+    {
+        return ['ulid'];
+    }
+
+    /**
+     * Get the route key name for Laravel route model binding.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'ulid';
     }
 
     /**
