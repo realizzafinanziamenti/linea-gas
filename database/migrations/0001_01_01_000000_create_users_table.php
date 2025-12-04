@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone', 20)->nullable();
             $table->date('birth_date')->nullable();     // tecnici/segretarie
             $table->date('hire_date')->nullable();      // tecnici/segretarie
-            $table->string('tax_code', 16)->nullable();
+            $table->string('tax_code', 16)->unique()->nullable();
 
             // Indirizzo generico (tecnici/segretarie)
             $table->string('address')->nullable();
