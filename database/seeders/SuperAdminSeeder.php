@@ -18,7 +18,8 @@ class SuperAdminSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'super@admin.com'],
             [
-                'name' => 'Superadmin',
+                'first_name' => 'Super',
+                'last_name' => 'Admin',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ]
