@@ -87,39 +87,51 @@ class User extends Authenticatable
     }
 
     // HELPERS
-    /* Get the user's initials */
+    /**
+     * Get the user's initials
+     */
     public function initials(): string
     {
         return Str::substr($this->first_name, 0, 1)
             . Str::substr($this->last_name, 0, 1);
     }
 
-    /* Check if the user role is superadmin */
+    /**
+     * Check if the user role is superadmin
+     */
     public function isSuperAdmin(): bool
     {
         return $this->hasRole(RoleEnum::SUPER_ADMIN->value);
     }
 
-    /* Check if the user role is customer */
+    /**
+     * Check if the user role is customer
+     */
     public function isCustomer(): bool
     {
         return $this->hasRole(RoleEnum::CUSTOMER->value);
     }
 
-    /* Check if the user role is back office (secretary) */
+    /**
+     * Check if the user role is back office (secretary)
+     */
     public function isBackOffice(): bool
     {
         return $this->hasRole(RoleEnum::BACK_OFFICE->value);
     }
 
-    /* Check if the user role is technician */
+    /**
+     * Check if the user role is technician
+     */
     public function isTechnician(): bool
     {
         return $this->hasRole(RoleEnum::TECHNICIAN->value);
     }
 
     // ATTRIBUTES
-    /* Get the user's role name attribute */
+    /**
+     * Get the user's role name attribute
+     */
     protected function roleName(): Attribute
     {
         return Attribute::get(function () {
@@ -134,26 +146,34 @@ class User extends Authenticatable
         });
     }
 
-    /* Get the user's full name attribute */
+    /**
+     * Get the user's full name attribute
+     */
     protected function fullName(): Attribute
     {
         return Attribute::get(fn() => "{$this->first_name} {$this->last_name}");
     }
 
-    /* Formatted birth date (d/m/Y) or '-' if null */
+    /**
+     * Formatted birth date (d/m/Y) or '-' if null
+     */
     protected function formattedBirthDate(): Attribute
     {
         return Attribute::get(fn() => $this->birth_date?->format('d/m/Y') ?? '-');
     }
 
-    /* Formatted birth date (d/m/Y) or '-' if null */
+    /**
+     * Formatted hire date (d/m/Y) or '-' if null
+     */
     protected function formattedHireDate(): Attribute
     {
         return Attribute::get(fn() => $this->hire_date?->format('d/m/Y') ?? '-');
     }
 
     // RELATIONSHIPS
-    /* Get the customer associated with the user */
+    /**
+     * Get the customer associated with the user
+     */
     public function customer(): HasOne
     {
         return $this->hasOne(Customer::class);
