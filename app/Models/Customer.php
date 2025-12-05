@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\CustomerTypeEnum;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customer extends Model
@@ -38,7 +40,7 @@ class Customer extends Model
     protected function casts(): array
     {
         return [
-            // 'company_name' => 'string', // Example cast
+            'customer_type' => CustomerTypeEnum::class,
         ];
     }
 
@@ -58,5 +60,12 @@ class Customer extends Model
     public function getRouteKeyName(): string
     {
         return 'ulid';
+    }
+
+    // RELATIONSHIPS
+    /* Get the user associated with the customer */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
