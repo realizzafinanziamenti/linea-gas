@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\CustomerTypeEnum;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,14 +19,14 @@ class CustomerFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory()->withoutTwoFactor(),
-            'customer_type' => fake()->randomElement(['privato', 'azienda']),
+            'user_id' => User::factory()->withoutTwoFactor()->customer(),
+            'customer_type' => fake()->randomElement(CustomerTypeEnum::cases()),
             'company_name' => fake()->company(),
             'vat_number' => fake()->vat(),
             'civic_number' => fake()->buildingNumber(),
-            'stair' => fake()->optional()->bothify('Stair ?##'),
-            'floor' => fake()->optional()->bothify('Floor ##'),
-            'interior' => fake()->optional()->bothify('Interior ##'),
+            'stair' => fake()->optional()->randomElement(['A', 'B', 'C', 'D']),
+            'floor' => fake()->optional()->numerify('##'),
+            'interior' => fake()->optional()->numerify('##'),
             'locality' => fake()->optional()->citySuffix(),
             'zone' => fake()->optional()->word(),
         ];
