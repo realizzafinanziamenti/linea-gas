@@ -1,15 +1,24 @@
 <?php
 
 use App\Models\User;
+use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 
 test('profile page is displayed', function () {
+    if (! Features::enabled(Features::canUpdateProfileInformation())) {
+        $this->markTestSkipped('Profile update is not enabled.');
+    }
+
     $this->actingAs($user = User::factory()->create());
 
     $this->get(route('profile.edit'))->assertOk();
 });
 
 test('profile information can be updated', function () {
+    if (! Features::enabled(Features::canUpdateProfileInformation())) {
+        $this->markTestSkipped('Profile update is not enabled.');
+    }
+
     $user = User::factory()->create();
 
     $this->actingAs($user);
@@ -29,6 +38,10 @@ test('profile information can be updated', function () {
 });
 
 test('email verification status is unchanged when email address is unchanged', function () {
+    if (! Features::enabled(Features::canUpdateProfileInformation())) {
+        $this->markTestSkipped('Profile update is not enabled.');
+    }
+
     $user = User::factory()->create();
 
     $this->actingAs($user);
@@ -44,6 +57,10 @@ test('email verification status is unchanged when email address is unchanged', f
 });
 
 test('user can delete their account', function () {
+    if (! Features::enabled(Features::canUpdateProfileInformation())) {
+        $this->markTestSkipped('Profile update is not enabled.');
+    }
+
     $user = User::factory()->create();
 
     $this->actingAs($user);
@@ -61,6 +78,10 @@ test('user can delete their account', function () {
 });
 
 test('correct password must be provided to delete account', function () {
+    if (! Features::enabled(Features::canUpdateProfileInformation())) {
+        $this->markTestSkipped('Profile update is not enabled.');
+    }
+
     $user = User::factory()->create();
 
     $this->actingAs($user);
