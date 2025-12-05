@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Customer;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,7 +23,7 @@ class DatabaseSeeder extends Seeder
         // only for local, testing or staging environments
         if (App::environment('local', 'testing', 'staging')) {
             $this->call([
-                //
+                CustomerSeeder::class,
             ]);
         }
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\RoleEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -24,10 +25,19 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'phone' => fake()->phoneNumber(),
+            'birth_date' => fake()->dateTimeBetween('-50 years', '-18 years'),
+            'hire_date' => fake()->dateTimeBetween('-18 years', 'now'),
+            'tax_code' => fake()->taxId(),
+            'address' => fake()->streetAddress(),
+            'city' => fake()->city(),
+            'province' => fake()->stateAbbr(),
+            'zip_code' => fake()->postcode(),
             'remember_token' => Str::random(10),
             'two_factor_secret' => Str::random(10),
             'two_factor_recovery_codes' => Str::random(10),
@@ -40,7 +50,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }
@@ -50,10 +60,40 @@ class UserFactory extends Factory
      */
     public function withoutTwoFactor(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'two_factor_confirmed_at' => null,
         ]);
+    }
+
+    /**
+     * Assign the technician role to the user.
+     */
+    public function technician()
+    {
+        return $this->afterCreating(function ($user) {
+            $user->assignRole(RoleEnum::TECHNICIAN->value);
+        });
+    }
+
+    /**
+     * Assign the secretary role to the user.
+     */
+    public function secretary()
+    {
+        return $this->afterCreating(function ($user) {
+            $user->assignRole(RoleEnum::BACK_OFFICE->value);
+        });
+    }
+
+    /**
+     * Assign the customer role to the user.
+     */
+    public function customer()
+    {
+        return $this->afterCreating(function ($user) {
+            $user->assignRole(RoleEnum::CUSTOMER->value);
+        });
     }
 }
